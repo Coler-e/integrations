@@ -14,6 +14,16 @@ streams:
     title: Forwarded
     description: 'Collect ForwardedEvents channel logs'
     vars:
+      - name: channel
+        type: text
+        title: Event Log Channel
+        description: >-
+          The Windows Event Log channel to monitor. Defaults to ForwardedEvents for
+          WEF-collected events. Set to Application (or any other channel name) when
+          using push_windows_events.py for local benchmarking without WEF.
+        required: false
+        show_user: false
+        default: "ForwardedEvents"
       - name: preserve_original_event
         required: true
         show_user: true

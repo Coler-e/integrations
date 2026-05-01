@@ -1,16 +1,25 @@
 ---
-# Requires Elastic Agent running on a Windows host with the ForwardedEvents channel
-# populated via Windows Event Forwarding (WEF). Recommended: configure a WEF
-# subscription on the collector to receive Security events from domain members.
-# Typical event IDs covered: logon/logoff (4624/4625/4634), process (4688/4689),
-# Kerberos (4768/4769/4770/4771), object access (4662/4663), policy (4719).
-description: Benchmark Windows Security forwarded events through the full agent pipeline
+# End-to-end benchmark for Windows Security events via the real Windows Event Log.
+#
+# Pre-requisite: run push_windows_events.py on the Windows host BEFORE or
+# concurrently with this benchmark so that events are flowing into the
+# Application channel.  The script registers the "ElasticBenchmark" source
+# and writes synthetic Security-style events (4624/4625/4634/4688/4689).
+#
+#   pip install pywin32
+#   python push_windows_events.py --count 200000 --type security --workers 4
+#
+# The agent's winlog input reads those events from the Application channel,
+# pushing them through the full ingest pipeline to Elasticsearch.
+# Use --channel Application to override the default ForwardedEvents target.
+description: Benchmark Windows Security events through the full agent pipeline (Application channel)
 input: winlog
 data_stream:
   name: forwarded
   vars:
-    event_id: "4624,4625,4634,4648,4662,4663,4688,4689,4719,4768,4769,4770,4771"
+    channel: Application
+    event_id: "4624,4625,4634,4688,4689,5140"
     preserve_original_event: false
-    ignore_older: 1h
-warmup_time_period: 30s
+    ignore_older: 2h
+warmup_time_period: 15s
 benchmark_time_period: 120s

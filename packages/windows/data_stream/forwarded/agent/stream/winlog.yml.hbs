@@ -1,4 +1,4 @@
-name: ForwardedEvents
+name: {{#if channel}}{{channel}}{{else}}ForwardedEvents{{/if}}
 condition: ${host.platform} == 'windows'
 {{#if event_id}}
 event_id: {{event_id}}
