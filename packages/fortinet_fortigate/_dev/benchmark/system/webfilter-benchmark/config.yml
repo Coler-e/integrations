@@ -1,0 +1,134 @@
+fields:
+  - name: timestamp
+    period: -24h
+  - name: pri
+    enum:
+      - "188"
+      - "189"
+  - name: devname
+    enum:
+      - "fw-edge-01"
+      - "fw-edge-02"
+      - "fw-core-01"
+  - name: devid
+    enum:
+      - "FG100F0001"
+      - "FG200F0002"
+      - "FG400E0003"
+  - name: logid_webfilter
+    enum:
+      - "0316013056"
+      - "0317013312"
+      - "0316013057"
+  - name: eventtype
+    enum:
+      - "ftgd_blk"
+      - "ftgd_allow"
+      - "ftgd_blk"
+      - "ftgd_allow"
+      - "ftgd_allow"
+  - name: level_webfilter
+    enum:
+      - "warning"
+      - "notice"
+      - "notice"
+  - name: vd
+    enum:
+      - "root"
+      - "OPERATIONAL"
+  - name: tz
+    enum:
+      - "+0000"
+      - "-0500"
+      - "-0800"
+      - "+0100"
+  - name: policyid
+    range:
+      min: 1
+      max: 9999
+  - name: sessionid
+    range:
+      min: 10000
+      max: 9999999
+  - name: user
+    enum:
+      - "alice"
+      - "bob"
+      - "jsmith"
+      - "administrator"
+      - ""
+  - name: srcip
+    cardinality: 500
+  - name: srcport
+    range:
+      min: 1024
+      max: 65535
+  - name: srcintf
+    enum:
+      - "port1"
+      - "internal"
+      - "LAN"
+  - name: srcintfrole
+    enum:
+      - "lan"
+  - name: dstip
+    cardinality: 200
+  - name: dstintf
+    enum:
+      - "wan1"
+      - "wan2"
+  - name: proto_web
+    enum:
+      - "6"
+  - name: service_web
+    enum:
+      - "HTTPS"
+      - "HTTP"
+  - name: hostname
+    enum:
+      - "www.example.com"
+      - "social.example.net"
+      - "streaming.example.io"
+      - "ads.tracking.example"
+      - "malicious.example.org"
+      - "news.example.com"
+  - name: profile
+    enum:
+      - "default-profile"
+      - "strict-profile"
+      - "guest-profile"
+  - name: action_web
+    enum:
+      - "blocked"
+      - "passthrough"
+      - "passthrough"
+      - "passthrough"
+  - name: url
+    enum:
+      - "/"
+      - "/login"
+      - "/api/data"
+      - "/stream/video"
+      - "/downloads/file.exe"
+      - "/ads/tracker"
+  - name: sentbyte
+    range:
+      min: 256
+      max: 65536
+  - name: rcvdbyte
+    range:
+      min: 256
+      max: 65536
+  - name: cat
+    range:
+      min: 1
+      max: 100
+  - name: catdesc
+    enum:
+      - "Internet Telephony"
+      - "Web-based Email"
+      - "Social Networking"
+      - "Streaming Media"
+      - "Malicious Websites"
+      - "Business"
+      - "Information Technology"

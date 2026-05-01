@@ -1,0 +1,16 @@
+- name: timestamp
+  type: date
+- name: remote_ip
+  type: ip
+- name: remote_user
+  type: keyword
+- name: request_method
+  type: keyword
+- name: request_path
+  type: keyword
+- name: status_code
+  type: keyword
+- name: response_bytes
+  type: long
+- name: user_agent
+  type: keyword

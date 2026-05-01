@@ -1,0 +1,152 @@
+fields:
+  - name: timestamp
+    period: -24h
+  - name: pri
+    enum:
+      - "188"
+      - "189"
+      - "190"
+      - "191"
+  - name: devname
+    enum:
+      - "fw-edge-01"
+      - "fw-edge-02"
+      - "fw-core-01"
+      - "fw-dmz-01"
+  - name: devid
+    enum:
+      - "FG100F0001"
+      - "FG200F0002"
+      - "FG400E0003"
+      - "FG600F0004"
+  - name: logid
+    enum:
+      - "0000000013"
+      - "0000000014"
+      - "0000000015"
+      - "0001000014"
+  - name: subtype
+    enum:
+      - "forward"
+      - "forward"
+      - "forward"
+      - "local"
+      - "end"
+  - name: level
+    enum:
+      - "notice"
+      - "notice"
+      - "notice"
+      - "warning"
+      - "information"
+  - name: vd
+    enum:
+      - "root"
+      - "OPERATIONAL"
+      - "DMZ"
+  - name: srcip
+    cardinality: 500
+  - name: srcport
+    range:
+      min: 1024
+      max: 65535
+  - name: srcintf
+    enum:
+      - "port1"
+      - "port2"
+      - "internal"
+      - "LAN"
+  - name: srcintfrole
+    enum:
+      - "lan"
+      - "dmz"
+  - name: dstip
+    cardinality: 200
+  - name: dstport
+    enum:
+      - "80"
+      - "443"
+      - "53"
+      - "25"
+      - "22"
+      - "3389"
+      - "8080"
+      - "8443"
+  - name: dstintf
+    enum:
+      - "wan1"
+      - "wan2"
+      - "port3"
+  - name: dstintfrole
+    enum:
+      - "wan"
+      - "dmz"
+  - name: sessionid
+    range:
+      min: 10000
+      max: 9999999
+  - name: proto
+    enum:
+      - "6"
+      - "6"
+      - "17"
+      - "1"
+  - name: action
+    enum:
+      - "allow"
+      - "allow"
+      - "allow"
+      - "deny"
+      - "drop"
+      - "accept"
+  - name: policyid
+    range:
+      min: 1
+      max: 9999
+  - name: service
+    enum:
+      - "HTTPS"
+      - "HTTP"
+      - "DNS"
+      - "SMTP"
+      - "SSH"
+      - "RDP"
+      - "ICMP"
+  - name: country
+    enum:
+      - "United States"
+      - "Germany"
+      - "United Kingdom"
+      - "France"
+      - "Japan"
+      - "Reserved"
+      - "China"
+      - "India"
+  - name: duration
+    range:
+      min: 0
+      max: 86400
+  - name: sentbyte
+    range:
+      min: 0
+      max: 10485760
+  - name: rcvdbyte
+    range:
+      min: 0
+      max: 10485760
+  - name: sentpkt
+    range:
+      min: 0
+      max: 10000
+  - name: rcvdpkt
+    range:
+      min: 0
+      max: 10000
+  - name: appcat
+    enum:
+      - "Web.Client"
+      - "Network.Service"
+      - "Email"
+      - "Remote.Access"
+      - "unscanned"
+      - "business-and-economy"

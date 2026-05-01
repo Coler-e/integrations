@@ -1,0 +1,52 @@
+fields:
+  - name: timestamp
+    period: -24h
+  - name: log_level
+    enum:
+      - "debug"
+      - "info"
+      - "notice"
+      - "warn"
+      - "error"
+      - "error"
+      - "error"
+      - "crit"
+      - "alert"
+      - "emerg"
+  - name: pid
+    range:
+      min: 1
+      max: 65535
+  - name: tid
+    range:
+      min: 1
+      max: 65535
+  - name: cid
+    range:
+      min: 1
+      max: 999999
+  - name: request_path
+    enum:
+      - "/notfound.html"
+      - "/missing/page"
+      - "/old/resource.php"
+      - "/assets/deleted.css"
+      - "/api/v0/deprecated"
+      - "/robots.txt"
+      - "/sitemap.xml"
+  - name: client_ip
+    cardinality: 500
+  - name: server_name
+    enum:
+      - "localhost"
+      - "example.com"
+      - "api.example.com"
+      - "www.example.com"
+  - name: request_method
+    enum:
+      - "GET"
+      - "GET"
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "DELETE"

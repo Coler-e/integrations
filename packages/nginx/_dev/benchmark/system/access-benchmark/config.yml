@@ -1,0 +1,66 @@
+fields:
+  - name: timestamp
+    period: -24h
+  - name: remote_ip
+    cardinality: 1000
+  - name: remote_user
+    enum:
+      - "-"
+      - "-"
+      - "-"
+      - "admin"
+      - "user1"
+      - "user2"
+  - name: request_method
+    enum:
+      - "GET"
+      - "GET"
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "HEAD"
+  - name: request_path
+    enum:
+      - "/index.html"
+      - "/api/v1/users"
+      - "/api/v1/products"
+      - "/api/v1/orders"
+      - "/downloads/product_1"
+      - "/downloads/product_2"
+      - "/images/logo.png"
+      - "/static/app.js"
+      - "/static/style.css"
+      - "/health"
+      - "/metrics"
+      - "/favicon.ico"
+  - name: status_code
+    enum:
+      - "200"
+      - "200"
+      - "200"
+      - "200"
+      - "201"
+      - "301"
+      - "302"
+      - "304"
+      - "400"
+      - "401"
+      - "403"
+      - "404"
+      - "500"
+      - "502"
+      - "503"
+  - name: response_bytes
+    range:
+      min: 64
+      max: 65536
+  - name: user_agent
+    enum:
+      - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+      - "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+      - "curl/7.88.1"
+      - "python-requests/2.31.0"
+      - "Go-http-client/1.1"
+      - "Elastic/8.0 (linux; amd64)"

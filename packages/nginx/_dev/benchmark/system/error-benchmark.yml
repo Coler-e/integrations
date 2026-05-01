@@ -1,0 +1,19 @@
+---
+description: Benchmark 50000 nginx.error log events ingested end-to-end via Elastic Agent
+input: logfile
+data_stream:
+  name: error
+  vars:
+    paths:
+      - "{{SERVICE_LOGS_DIR}}/corpus-*"
+warmup_time_period: 10s
+corpora:
+  generator:
+    total_events: 50000
+    template:
+      path: ./error-benchmark/gotext.tpl
+      type: gotext
+    config:
+      path: ./error-benchmark/config.yml
+    fields:
+      path: ./error-benchmark/fields.yml

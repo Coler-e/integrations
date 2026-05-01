@@ -1,0 +1,19 @@
+---
+description: Benchmark 100000 nginx.access log events ingested end-to-end via Elastic Agent
+input: logfile
+data_stream:
+  name: access
+  vars:
+    paths:
+      - "{{SERVICE_LOGS_DIR}}/corpus-*"
+warmup_time_period: 10s
+corpora:
+  generator:
+    total_events: 100000
+    template:
+      path: ./access-benchmark/gotext.tpl
+      type: gotext
+    config:
+      path: ./access-benchmark/config.yml
+    fields:
+      path: ./access-benchmark/fields.yml

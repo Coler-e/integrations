@@ -1,0 +1,16 @@
+---
+# Requires Elastic Agent running on a Windows host with the ForwardedEvents channel
+# populated via Windows Event Forwarding (WEF). Recommended: configure a WEF
+# subscription on the collector to receive Security events from domain members.
+# Typical event IDs covered: logon/logoff (4624/4625/4634), process (4688/4689),
+# Kerberos (4768/4769/4770/4771), object access (4662/4663), policy (4719).
+description: Benchmark Windows Security forwarded events through the full agent pipeline
+input: winlog
+data_stream:
+  name: forwarded
+  vars:
+    event_id: "4624,4625,4634,4648,4662,4663,4688,4689,4719,4768,4769,4770,4771"
+    preserve_original_event: false
+    ignore_older: 1h
+warmup_time_period: 30s
+benchmark_time_period: 120s
