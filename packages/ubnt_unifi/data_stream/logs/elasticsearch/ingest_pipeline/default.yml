@@ -1,6 +1,103 @@
 ---
 description: Pipeline for processing Ubiquiti Unifi Network logs
 processors:
+
+### Classify and extract the header (timestamp/hostname/appname) of Ubiquiti UniFi's non-conformant
+### syslog body, for events that were not already identified and isolated as CEF client-side (CEF has
+### to be isolated client-side so the Filebeat CEF processor, which has no ingest-node equivalent, can
+### decode it before shipping). This mirrors RFC 3164 header parsing, adapted for the multiple
+### malformed variants UniFi equipment emits, so the logic is covered by pipeline tests. ###
+
+- script:
+    description: "Classify non-CEF events (iptables vs. other) and extract timestamp/hostname/appname from the malformed syslog body"
+    tag: parse_generic_syslog_body
+    if: ctx.tags == null || !ctx.tags.contains('ubnt-unifi-cef')
+    lang: painless
+    source: |-
+      if (ctx.tags == null) {
+        ctx.tags = new ArrayList();
+      }
+      if (ctx.log == null) {
+        ctx.log = new HashMap();
+      }
+      if (ctx.log.syslog == null) {
+        ctx.log.syslog = new HashMap();
+      }
+      String msg = /^<[0-9]+>/.matcher(ctx.event.original).replaceAll('');
+      if (msg.length() > 0) {
+        String extractedMessage = null;
+        String timestamp1 = null;
+        String hostname = null;
+        String appname = null;
+        Matcher ma = /^([A-Za-z]{3}\s+[0-9]{1,2}\s+[0-9]{2}:[0-9]{2}:[0-9]{2}|[0-9\:\-\.TZ]+) (\S+) \2 (.*)$/ms.matcher(msg);
+        Matcher mb = /^([A-Za-z]{3}\s+[0-9]{1,2}\s+[0-9]{2}:[0-9]{2}:[0-9]{2}|[0-9\:\-\.TZ]+) (\S+) (\S+): (.*)$/ms.matcher(msg);
+        Matcher mc = /^([A-Za-z]{3}\s+[0-9]{1,2}\s+[0-9]{2}:[0-9]{2}:[0-9]{2}|[0-9\:\-\.TZ]+) (\S+) (.*)$/ms.matcher(msg);
+        Matcher md = /^(\S+) (\S+): (.*)$/ms.matcher(msg);
+        Matcher me = /^(\S+) (.*)$/ms.matcher(msg);
+        if (ma.matches()) {
+          timestamp1 = ma.group(1);
+          hostname = ma.group(2);
+          extractedMessage = ma.group(3);
+        } else if (mb.matches()) {
+          timestamp1 = mb.group(1);
+          hostname = mb.group(2);
+          appname = mb.group(3);
+          extractedMessage = mb.group(4);
+        } else if (mc.matches()) {
+          timestamp1 = mc.group(1);
+          hostname = mc.group(2);
+          extractedMessage = mc.group(3);
+        } else if (md.matches()) {
+          hostname = md.group(1);
+          appname = md.group(2);
+          extractedMessage = md.group(3);
+        } else if (me.matches()) {
+          hostname = me.group(1);
+          extractedMessage = me.group(2);
+        }
+        if (extractedMessage != null) {
+          ctx.message = /\r?\n$/.matcher(extractedMessage).replaceAll('');
+          if (timestamp1 != null) {
+            ctx._tmp = ['timestamp1': timestamp1];
+          }
+          if (hostname != null) {
+            ctx.log.syslog.hostname = hostname;
+          }
+          if (appname != null) {
+            ctx.log.syslog.appname = appname;
+          }
+        }
+        if (msg =~ / DESCR=\\*"/) {
+          ctx.tags.add('ubnt-unifi-iptables');
+        } else {
+          ctx.tags.add('ubnt-unifi-other');
+        }
+      }
+
+- date:
+    description: "Parse the timestamp extracted above for non-CEF events; CEF events already have @timestamp set client-side"
+    if: ctx._tmp?.timestamp1 != null
+    field: _tmp.timestamp1
+    target_field: '@timestamp'
+    timezone: UTC
+    formats:
+      - "MMM d HH:mm:ss"
+      - "MMM  d HH:mm:ss"
+      - "MMM dd HH:mm:ss"
+      - "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+
+### Honor the drop_iptables/drop_noise input settings now that classification happens here rather
+### than client-side (the client can still tell us it *wants* to drop iptables/noise via a tag, but
+### the actual drop can only happen once we know the real classification). ###
+
+- drop:
+    description: "Drop iptables events if the input's drop_iptables setting requested it"
+    if: ctx.tags != null && ctx.tags.contains('ubnt-unifi-drop-iptables-requested') && ctx.tags.contains('ubnt-unifi-iptables')
+
+- drop:
+    description: "Drop non-CEF, non-iptables events if the input's drop_noise setting requested it"
+    if: ctx.tags != null && ctx.tags.contains('ubnt-unifi-drop-noise-requested') && !ctx.tags.contains('ubnt-unifi-cef') && !ctx.tags.contains('ubnt-unifi-iptables')
+
 - set:
     field: ecs.version
     value: '8.17.0'

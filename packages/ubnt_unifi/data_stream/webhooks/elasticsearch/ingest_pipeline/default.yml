@@ -31,6 +31,66 @@ processors:
     target_field: ubnt.unifi.webhook
     ignore_missing: true
 
+- script:
+    description: "Assign event.category/type/kind from ubnt.unifi.webhook.events[].id (primary) / alert_key (fallback), only for keys we have real confidence about"
+    tag: set_event_kind_type_category_script_from_webhook_events
+    if: ctx.ubnt?.unifi?.webhook?.events != null
+    lang: painless
+    params:
+      "event.admin_accessed_unifi_network":        {"kind": "event", "type": ["access","info"], "category": ["host","network"]}
+      "event.client_connected":                    {"kind": "event", "type": ["access","connection","start","info"], "category": ["network"]}
+      "event.client_disconnected":                 {"kind": "event", "type": ["connection","end","info"], "category": ["network"]}
+      "event.threat_detected":                     {"kind": "alert", "type": ["denied","info"], "category": ["network","intrusion_detection"]}
+      "event.honeypot_triggered":                  {"kind": "alert", "type": ["info"], "category": ["network","intrusion_detection"]}
+      "event.device_issue":                        {"kind": "event", "type": ["info"], "category": ["network"]}
+      "event.device_adoption_state_changed":       {"kind": "event", "type": ["change","info"], "category": ["configuration","network"]}
+      "event.device_discovery":                    {"kind": "event", "type": ["info"], "category": ["network"]}
+      "event.device_update_status_change":         {"kind": "event", "type": ["installation","info"], "category": ["package"]}
+      "event.admin_recording_clips_manipulations":  {"kind": "event", "type": ["change","info"], "category": ["file","host"]}
+      "event.admin_geolocation":                    {"kind": "event", "type": ["access","info"], "category": ["host","network"]}
+      "ADMIN_ACCESS":                              {"kind": "event", "type": ["access","info"], "category": ["host","network"]}
+      "CLIENT_CONNECTED_WIRELESS_2":               {"kind": "event", "type": ["access","connection","start","info"], "category": ["network"]}
+      "CLIENT_DISCONNECTED_WIRED_2":               {"kind": "event", "type": ["connection","end","info"], "category": ["network"]}
+      "THREAT_BLOCKED_V3":                         {"kind": "alert", "type": ["denied","info"], "category": ["network","intrusion_detection"]}
+      "HONEYPOT_HIT_DETECTED_KNOWN_CLIENT":        {"kind": "alert", "type": ["info"], "category": ["network","intrusion_detection"]}
+    source: >
+      for (item in ctx.ubnt.unifi.webhook.events) {
+        def schema = params[item.id];
+        if (schema == null) {
+          schema = params[item.alert_key];
+        }
+        if (schema != null) {
+          if (ctx.event == null) {
+            ctx.event = new HashMap();
+          }
+          ctx.event.kind = schema.kind;
+          ctx.event.type = schema.type;
+          ctx.event.category = schema.category;
+        }
+      }
+
+- script:
+    description: "Assign event.kind/type from ubnt.unifi.webhook.alarm.triggers[].key; category deliberately left unset (no ECS category fits physical/camera smart detections)"
+    tag: set_event_kind_type_script_from_webhook_alarm_triggers
+    if: ctx.ubnt?.unifi?.webhook?.alarm?.triggers != null
+    lang: painless
+    params:
+      "person":  {"kind": "alert", "type": ["info"]}
+      "vehicle": {"kind": "alert", "type": ["info"]}
+      "package": {"kind": "alert", "type": ["info"]}
+      "animal":  {"kind": "alert", "type": ["info"]}
+    source: >
+      for (item in ctx.ubnt.unifi.webhook.alarm.triggers) {
+        def schema = params[item.key];
+        if (schema != null) {
+          if (ctx.event == null) {
+            ctx.event = new HashMap();
+          }
+          ctx.event.kind = schema.kind;
+          ctx.event.type = schema.type;
+        }
+      }
+
 ##############
 ## Clean Up ##
 ##############

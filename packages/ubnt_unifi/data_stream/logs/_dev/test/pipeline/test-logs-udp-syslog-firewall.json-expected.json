@@ -1,7 +1,7 @@
 {
     "expected": [
         {
-            "@timestamp": "2025-07-05T03:31:11.000Z",
+            "@timestamp": "2026-07-05T13:31:11.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
                 "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
@@ -12,6 +12,7 @@
             "destination": {
                 "address": "10.95.75.174",
                 "ip": "10.95.75.174",
+                "locality": "internal",
                 "port": 80
             },
             "ecs": {
@@ -28,6 +29,9 @@
                     "denied",
                     "connection"
                 ]
+            },
+            "flow": {
+                "locality": "internal"
             },
             "input": {
                 "type": "udp"
@@ -77,9 +81,12 @@
             },
             "message": "[VPN_LAN-D-10004] DESCR=\"Block VPN to Internal - Other\" IN=wgsrv1 OUT=br3 MAC= SRC=192.168.63.120 DST=10.95.75.174 LEN=64 TOS=00 PREC=0x00 TTL=253 ID=0 DF PROTO=TCP SPT=51523 DPT=80 SEQ=3925309497 ACK=0 WINDOW=65535 SYN URGP=0 MARK=1a0000 ",
             "network": {
+                "bytes": 64,
                 "community_id": "1:BtTl5uUCVWA6Vgql8suoqSnHL0M=",
                 "direction": "internal",
-                "transport": "tcp"
+                "packets": 1,
+                "transport": "tcp",
+                "type": "ipv4"
             },
             "observer": {
                 "egress": {
@@ -118,7 +125,10 @@
             },
             "source": {
                 "address": "192.168.63.120",
+                "bytes": 64,
                 "ip": "192.168.63.120",
+                "locality": "internal",
+                "packets": 1,
                 "port": 51523
             },
             "tags": [
@@ -129,7 +139,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-07T12:45:52.000Z",
+            "@timestamp": "2026-07-07T22:45:52.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-48f6-9e97-a152a19d90f5",
                 "id": "01234567-89ab-cdef-4ca6-af23-6caf5f262f1c",
@@ -140,6 +150,7 @@
             "destination": {
                 "address": "255.255.255.255",
                 "ip": "255.255.255.255",
+                "locality": "external",
                 "port": 10001
             },
             "ecs": {
@@ -156,6 +167,9 @@
                     "allowed",
                     "connection"
                 ]
+            },
+            "flow": {
+                "locality": "external"
             },
             "input": {
                 "type": "filestream"
@@ -205,9 +219,12 @@
             },
             "message": "[LOCAL_CUSTOM2-A-2147483647] DESCR=\\\"[LOCAL_CUSTOM2]Allow All T\\\" IN= OUT=br999 MAC= SRC=192.168.63.120 DST=255.255.255.255 LEN=32 TOS=00 PREC=0x00 TTL=64 ID=5692 DF PROTO=UDP SPT=45148 DPT=10001 LEN=12 UID=0 GID=0 MARK=1a0000 ",
             "network": {
+                "bytes": 32,
                 "community_id": "1:C1gJ2CvGaCbcQ1s+qz5ReCCYi9c=",
                 "direction": "outbound",
-                "transport": "udp"
+                "packets": 1,
+                "transport": "udp",
+                "type": "ipv4"
             },
             "observer": {
                 "egress": {
@@ -240,7 +257,10 @@
             },
             "source": {
                 "address": "192.168.63.120",
+                "bytes": 32,
                 "ip": "192.168.63.120",
+                "locality": "internal",
+                "packets": 1,
                 "port": 45148
             },
             "tags": [
@@ -251,7 +271,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-08T03:32:04.000Z",
+            "@timestamp": "2026-07-08T13:32:04.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-48f6-9e97-a152a19d90f5",
                 "id": "01234567-89ab-cdef-4ca6-af23-6caf5f262f1c",
@@ -261,16 +281,23 @@
             },
             "destination": {
                 "address": "2a02:cf40:5503:de01:3dba:d6d6:5949:f36e",
+                "as": {
+                    "number": 62121,
+                    "organization": {
+                        "name": "Christian Ebsen ApS"
+                    }
+                },
                 "geo": {
                     "continent_name": "Europe",
-                    "country_iso_code": "NO",
-                    "country_name": "Norway",
+                    "country_iso_code": "DK",
+                    "country_name": "Denmark",
                     "location": {
-                        "lat": 62.0,
-                        "lon": 10.0
+                        "lat": 55.7123,
+                        "lon": 12.0564
                     }
                 },
                 "ip": "2a02:cf40:5503:de01:3dba:d6d6:5949:f36e",
+                "locality": "external",
                 "mac": "D0-21-F9-89-C2-4A"
             },
             "ecs": {
@@ -287,6 +314,9 @@
                     "denied",
                     "connection"
                 ]
+            },
+            "flow": {
+                "locality": "external"
             },
             "input": {
                 "type": "filestream"
@@ -334,8 +364,10 @@
             },
             "message": "[WAN_LAN-D-2147483647] DESCR=\\\"[WAN_LAN]Block All Traffic\\\" IN=eth7 OUT=br5 MAC=d0:21:f9:89:c2:4a:ea:04:fe:a2:00:82:86:dd:60:05:85:34 SRC=2a02:cf40:5b54:f902:3f0e:1126:568a:75d9 DST=2a02:cf40:5503:de01:3dba:d6d6:5949:f36e LEN=56 TC=0 HOPLIMIT=246 FLOWLBL=361780 PROTO=ICMPv6 TYPE=128 CODE=0 ID=1 SEQ=1 MARK=1a0000 ",
             "network": {
+                "bytes": 56,
                 "community_id": "1:OXHwYPwR8WKez+Gdfp5RvztfUCw=",
                 "direction": "external",
+                "packets": 1,
                 "transport": "ipv6-icmp",
                 "type": "ipv6"
             },
@@ -373,17 +405,26 @@
             },
             "source": {
                 "address": "2a02:cf40:5b54:f902:3f0e:1126:568a:75d9",
+                "as": {
+                    "number": 62121,
+                    "organization": {
+                        "name": "Christian Ebsen ApS"
+                    }
+                },
+                "bytes": 56,
                 "geo": {
                     "continent_name": "Europe",
-                    "country_iso_code": "NO",
-                    "country_name": "Norway",
+                    "country_iso_code": "DK",
+                    "country_name": "Denmark",
                     "location": {
-                        "lat": 62.0,
-                        "lon": 10.0
+                        "lat": 55.7123,
+                        "lon": 12.0564
                     }
                 },
                 "ip": "2a02:cf40:5b54:f902:3f0e:1126:568a:75d9",
-                "mac": "EA-04-FE-A2-00-82"
+                "locality": "external",
+                "mac": "EA-04-FE-A2-00-82",
+                "packets": 1
             },
             "tags": [
                 "preserve_original_event",
@@ -393,7 +434,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-08T01:06:32.000Z",
+            "@timestamp": "2026-07-08T11:06:32.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-48f6-9e97-a152a19d90f5",
                 "id": "01234567-89ab-cdef-4ca6-af23-6caf5f262f1c",
@@ -404,6 +445,7 @@
             "destination": {
                 "address": "192.168.10.2",
                 "ip": "192.168.10.2",
+                "locality": "internal",
                 "mac": "D0-21-F9-89-C2-4B"
             },
             "ecs": {
@@ -420,6 +462,9 @@
                     "allowed",
                     "connection"
                 ]
+            },
+            "flow": {
+                "locality": "internal"
             },
             "input": {
                 "type": "filestream"
@@ -469,10 +514,12 @@
                     }
                 }
             },
-            "message": "[LAN_VPN-A-2147483647] DESCR=\"[LAN_VPN]Allow All Traffic\" IN=br2 OUT=wgsrv1 MAC=d0:21:f9:89:c2:4b:58:47:ca:7c:4d:01:08:00 SRC=10.95.75.174 DST=192.168.63.120 LEN=28 TOS=00 PREC=0x00 TTL=2 ID=60827 DF PROTO=ICMP TYPE=8 CODE=0 ID=50973 SEQ=60615 MARK=1a0000 ",
+            "message": "[LAN_VPN-A-2147483647] DESCR=\"[LAN_VPN]Allow All Traffic\" IN=br2 OUT=wgsrv1 MAC=d0:21:f9:89:c2:4b:58:47:ca:7c:4d:01:08:00 SRC=192.168.0.32 DST=192.168.10.2 LEN=28 TOS=00 PREC=0x00 TTL=2 ID=60827 DF PROTO=ICMP TYPE=8 CODE=0 ID=50973 SEQ=60615 MARK=1a0000 ",
             "network": {
+                "bytes": 28,
                 "community_id": "1:B6C44SyDDqpCk+R5K/pYArwZZFU=",
                 "direction": "internal",
+                "packets": 1,
                 "transport": "icmp",
                 "type": "ipv4"
             },
@@ -510,12 +557,118 @@
             },
             "source": {
                 "address": "192.168.0.32",
+                "bytes": 28,
                 "ip": "192.168.0.32",
-                "mac": "58-47-CA-7C-4D-01"
+                "locality": "internal",
+                "mac": "58-47-CA-7C-4D-01",
+                "packets": 1
             },
             "tags": [
                 "preserve_original_event",
                 "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-iptables"
+            ]
+        },
+        null,
+        {
+            "@timestamp": "2026-07-09T02:36:08.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-48f6-9e97-a152a19d90f5",
+                "id": "01234567-89ab-cdef-4ca6-af23-6caf5f262f1c",
+                "name": "elastic-agent.internal",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "destination": {
+                "address": "10.95.75.174",
+                "ip": "10.95.75.174",
+                "locality": "internal",
+                "mac": "1C-0B-8B-1A-1F-15",
+                "port": 3478
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "action": "dnat",
+                "category": [
+                    "network"
+                ],
+                "kind": "event",
+                "type": [
+                    "info",
+                    "connection"
+                ]
+            },
+            "flow": {
+                "locality": "internal"
+            },
+            "input": {
+                "type": "udp"
+            },
+            "iptables": {
+                "ether_type": 2048,
+                "fragment_flags": [
+                    "DF"
+                ],
+                "id": 45241,
+                "length": 48,
+                "precedence_bits": 0,
+                "tos": 0,
+                "ttl": 64,
+                "udp": {
+                    "length": 28
+                }
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "unifigw"
+                }
+            },
+            "network": {
+                "bytes": 48,
+                "community_id": "1:Y1SQVtWUeQbEDmzgQngp03GFG4M=",
+                "direction": "internal",
+                "packets": 1,
+                "transport": "udp",
+                "type": "ipv4"
+            },
+            "observer": {
+                "hostname": "unifigw",
+                "ingress": {
+                    "interface": {
+                        "name": "br5"
+                    }
+                },
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "related": {
+                "hosts": [
+                    "unifigw"
+                ],
+                "ip": [
+                    "192.168.5.78",
+                    "10.95.75.174"
+                ]
+            },
+            "rule": {
+                "description": "PortForward DNAT [Netbird UDP]",
+                "id": "8",
+                "name": "PREROUTING-DNAT-8",
+                "ruleset": "PREROUTING"
+            },
+            "source": {
+                "address": "192.168.5.78",
+                "bytes": 48,
+                "ip": "192.168.5.78",
+                "locality": "internal",
+                "mac": "BC-24-11-23-1D-62",
+                "packets": 1,
+                "port": 51820
+            },
+            "tags": [
                 "forwarded",
                 "ubnt-unifi-iptables"
             ]

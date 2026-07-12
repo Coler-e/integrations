@@ -2170,32 +2170,99 @@
             },
             {
                 "embeddableConfig": {
+                    "attributes": {
+                        "columns": [
+                            "observer.hostname",
+                            "observer.product",
+                            "observer.version",
+                            "event.kind",
+                            "event.type",
+                            "event.category",
+                            "message"
+                        ],
+                        "description": "",
+                        "grid": {
+                            "columns": {
+                                "event.category": {
+                                    "width": 173
+                                },
+                                "event.kind": {
+                                    "width": 130
+                                },
+                                "event.type": {
+                                    "width": 133
+                                },
+                                "observer.hostname": {
+                                    "width": 191
+                                },
+                                "observer.product": {
+                                    "width": 176
+                                },
+                                "observer.version": {
+                                    "width": 180
+                                }
+                            }
+                        },
+                        "hideChart": false,
+                        "isTextBasedQuery": false,
+                        "kibanaSavedObjectMeta": {
+                            "searchSourceJSON": {
+                                "filter": [
+                                    {
+                                        "$state": {
+                                            "store": "appState"
+                                        },
+                                        "meta": {
+                                            "alias": null,
+                                            "disabled": false,
+                                            "field": "data_stream.dataset",
+                                            "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+                                            "key": "data_stream.dataset",
+                                            "negate": false,
+                                            "params": {
+                                                "query": "ubnt_unifi.logs"
+                                            },
+                                            "type": "phrase"
+                                        },
+                                        "query": {
+                                            "match_phrase": {
+                                                "data_stream.dataset": "ubnt_unifi.logs"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "indexRefName": "kibanaSavedObjectMeta.searchSourceJSON.index",
+                                "query": {
+                                    "language": "kuery",
+                                    "query": ""
+                                }
+                            }
+                        },
+                        "references": [
+                            {
+                                "id": "security-solution-default",
+                                "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "security-solution-default",
+                                "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "sort": [
+                            [
+                                "@timestamp",
+                                "desc"
+                            ]
+                        ],
+                        "timeRestore": false,
+                        "title": "[Ubiquiti UniFi] Logs"
+                    },
                     "description": "",
                     "enhancements": {
                         "dynamicActions": {
                             "events": []
-                        }
-                    },
-                    "grid": {
-                        "columns": {
-                            "event.category": {
-                                "width": 173
-                            },
-                            "event.kind": {
-                                "width": 130
-                            },
-                            "event.type": {
-                                "width": 133
-                            },
-                            "observer.hostname": {
-                                "width": 191
-                            },
-                            "observer.product": {
-                                "width": 176
-                            },
-                            "observer.version": {
-                                "width": 180
-                            }
                         }
                     }
                 },
@@ -2207,7 +2274,6 @@
                     "y": 28
                 },
                 "panelIndex": "cd97428e-825d-43d3-8341-81a4343ac2e2",
-                "panelRefName": "panel_cd97428e-825d-43d3-8341-81a4343ac2e2",
                 "title": "[Ubiquiti UniFi] Logs",
                 "type": "search"
             }
@@ -2224,11 +2290,6 @@
             "id": "security-solution-default",
             "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
             "type": "index-pattern"
-        },
-        {
-            "id": "ubnt_unifi-19723f42-25ee-4590-816b-db4b52baf6aa",
-            "name": "cd97428e-825d-43d3-8341-81a4343ac2e2:panel_cd97428e-825d-43d3-8341-81a4343ac2e2",
-            "type": "search"
         },
         {
             "id": "security-solution-default",

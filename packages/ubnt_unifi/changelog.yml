@@ -1,5 +1,99 @@
 # newer versions go on top
-# newer versions go on top
+- version: "0.1.15"
+  changes:
+    - description: >-
+        Add network.type (ipv4/ipv6) and source.locality/destination.locality/flow.locality to the
+        iptables pipeline, matching the exact field names Elastic's own netflow package uses (confirmed
+        against its source in this repo) for the same internal/external classification. Note these
+        locality fields are not part of ECS itself, despite the name; they're declared as custom fields
+        here the same way the netflow package declares them, derived from the already-computed
+        network.direction rather than a fresh CIDR check.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.14"
+  changes:
+    - description: >-
+        Also map the logged packet's length to source.bytes/source.packets in the iptables pipeline (in
+        addition to network.bytes/network.packets added in 0.1.12), since Kibana's Security "Network" view
+        and related event renderers key off source.bytes/destination.bytes rather than network.bytes.
+        Still a per-packet value, not a true flow total; destination.bytes/packets are left unset since
+        the logged packet is one-directional (source to destination) and we have no visibility into any
+        return traffic.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.13"
+  changes:
+    - description: >-
+        Fix a general "other" pipeline grok bug where any daemon logging in the shape
+        "process[pid]: module.function(): message" (e.g. ubnt-fanctrl's fan/temperature sensor logs) had
+        the function-call annotation misread as process.name instead of the real daemon name. Replaces
+        the earlier one-off fix for the same issue in mcad's wireless stats logs with a general pattern
+        that also captures the function name into the new ubnt.unifi.function field. Also adds
+        event.category for ubnt-fanctrl.
+      type: bugfix
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.12"
+  changes:
+    - description: >-
+        Map the logged packet's length (iptables.length) to network.bytes/network.packets in the
+        iptables pipeline, so these events get the same Discover/Security "network flow" event renderer
+        as true NetFlow records. This is a per-packet value, not a true flow total: UniFi's firewall
+        logging only logs packets that match a logging-enabled rule (often just the connection-initiating
+        packet), so it doesn't sum bytes across a whole session the way a flow exporter does.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.11"
+  changes:
+    - description: >-
+        Fix a live production bug where the generic syslog body parser's timestamp regex would greedily
+        swallow a following hostname into the timestamp capture when that hostname contained no hyphens
+        or dots (e.g. "U7ProXG"), corrupting log.syslog.hostname/appname and causing a date-parse pipeline
+        error. Also fix an independent, unrelated grok pattern in the "other" pipeline that never actually
+        matched real UniFi mcad wireless-stats output due to an erroneous literal prefix, causing the
+        function name to be misclassified as process.name instead of "mcad".
+      type: bugfix
+      link: https://github.com/elastic/integrations/pull/14566
+    - description: >-
+        Add event.category (plus refined event.type/event.kind) for process names in the "other" pipeline
+        and alert/trigger keys in the webhooks pipeline that can be classified with real confidence, based
+        on analysis of real production traffic; ambiguous or low-evidence process names and alert types
+        are deliberately left with event.category unset rather than guessed.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.10"
+  changes:
+    - description: Cast process.pid/process.parent.pid as long instead of int in the "other" pipeline's grok patterns to match the ECS field type.
+      type: bugfix
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.9"
+  changes:
+    - description: >-
+        Fix ECS non-compliance in the cef pipeline: `risk.*` is not a valid top-level ECS field (it's
+        only reusable under host.risk.*/user.risk.*, and ECS itself says to use event.risk_score /
+        event.risk_score_norm for event risk instead) so CEF risk is now mapped to those plus a custom
+        ubnt.unifi.risk_level for the human-readable label. Also fixed two invalid event.category/
+        event.type combinations: "access" is not an allowed event.type for the intrusion_detection
+        category (Honeypot events), and "change" is not allowed for a lone network category (AP
+        Channel Change / Device Updated now also carry the configuration category, which does allow it).
+      type: bugfix
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.8"
+  changes:
+    - description: >-
+        Move classification and parsing of Ubiquiti UniFi's non-conformant syslog body (iptables vs.
+        other, timestamp/hostname/appname extraction) from an agent-side JavaScript processor into the
+        `logs` ingest pipeline, where it is covered by pipeline tests instead of only system tests. CEF
+        isolation stays agent-side since it has to run before the Filebeat CEF processor, which has no
+        ingest-node equivalent. The `drop_iptables`/`drop_noise` input settings now filter in the
+        ingest pipeline instead of client-side, since classification happens there now (this saves
+        storage but no longer saves bandwidth).
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/14566
+- version: "0.1.7"
+  changes:
+    - description: Add CODEOWNERS entry, align package owner with elastic/sec-deployment-and-devices, and embed the logs saved search by value in the dashboard to remove the SVR00004 validation bypass.
+      type: bugfix
+      link: https://github.com/elastic/integrations/pull/14566
 - version: "0.1.6"
   changes:
     - description: Update README to fix typo and missing field descriptions, ran elastic-package format

@@ -20,7 +20,7 @@ processors:
     params:
       "Admin":                {"kind": "event", "type": ["info"], "category": ["host","network"]}
       "Intrusion Prevention": {"kind": "alert", "type": ["info"], "category": ["network","intrusion_detection"]}
-      "Honeypot":             {"kind": "alert", "type": ["access","info"], "category": ["network","intrusion_detection"]}
+      "Honeypot":             {"kind": "alert", "type": ["info"], "category": ["network","intrusion_detection"]}
       "WiFi":                 {"kind": "event", "type": ["info"], "category": ["network"]}
       "Wired":                {"kind": "event", "type": ["info"], "category": ["network"]}
       "Devices":              {"kind": "event", "type": ["info"], "category": ["network"]}
@@ -53,18 +53,18 @@ processors:
       "Admin Removed Config":         {"type": ["change","info"], "category": ["host","configuration","network"]}
       "WiFi Client Connected":        {"type": ["access","connection","start","info"], "category": ["network"]}
       "WiFi Client Disconnected":     {"type": ["access","connection","end","info"], "category": ["network"]}
-      "WiFi Client Roamed":           {"type": ["access","connection","change","info"], "category": ["network"]}
-      "AP Channel Change":            {"type": ["change","info"], "category": ["network"]}
+      "WiFi Client Roamed":           {"type": ["access","connection","info"], "category": ["network"]}
+      "AP Channel Change":            {"type": ["change","info"], "category": ["configuration","network"]}
       "Device Offline":               {"type": ["info"], "category": ["network"]}
       "Device Reconnected":           {"type": ["access","info"], "category": ["network"]}
-      "Device Updated":               {"type": ["change","info"], "category": ["network"]}
+      "Device Updated":               {"type": ["change","info"], "category": ["configuration","network"]}
       "Multiple Devices Reconnected": {"type": ["connection","info"], "category": ["network"]}
       "Wired Client Connected":       {"type": ["connection","start","info"], "category": ["network"]}
       "Wired Client Disconnected":    {"type": ["connection","end","info"], "category": ["network"]}
       "VPN Client Connected":         {"type": ["connection","start","info"], "category": ["network"]}
       "VPN Client Disconnected":      {"type": ["connection","end","info"], "category": ["network"]}
       "Threat Detected and Blocked":  {"type": ["denied","info"], "category": ["network","intrusion_detection"]}
-      "Honeypot Triggered":           {"type": ["access","info"], "category": ["network","intrusion_detection"]}
+      "Honeypot Triggered":           {"type": ["info"], "category": ["network","intrusion_detection"]}
     source: >
       def schemaId = ctx.event.action.toString();
       def schema = params[schemaId];
@@ -92,19 +92,34 @@ processors:
     tag: set_event_reason_from_cef_unifisignature
 
 - script:
+    description: >-
+      ECS has no top-level qualitative risk field (risk.* is only reusable under host.risk.*/user.risk.*,
+      and its own schema says to use event.risk_score/event.risk_score_norm for event risk instead), so
+      map UNIFIrisk to those plus a custom ubnt.unifi.risk_level for the human-readable label.
     if: ctx.cef?.extensions?.UNIFIrisk != null
     lang: painless
     params:
-      "low":    {"static_level": "Low", "static_score": 25.0, "static_score_norm": 25.0}
-      "medium": {"static_level": "Medium", "static_score": 50.0, "static_score_norm": 50.0}
-      "high":   {"static_level": "High", "static_score": 75.0, "static_score_norm": 75.0}
+      "low":    {"level": "Low", "score": 25.0}
+      "medium": {"level": "Medium", "score": 50.0}
+      "high":   {"level": "High", "score": 75.0}
     source: >
       def schemaId = ctx.cef.extensions.UNIFIrisk.toString();
       def schema = params[schemaId];
       if (schema != null) {
-        ctx.risk = schema;
+        if (ctx.event == null) {
+          ctx.event = new HashMap();
+        }
+        ctx.event.risk_score = schema.score;
+        ctx.event.risk_score_norm = schema.score;
+        if (ctx.ubnt == null) {
+          ctx.ubnt = new HashMap();
+        }
+        if (ctx.ubnt.unifi == null) {
+          ctx.ubnt.unifi = new HashMap();
+        }
+        ctx.ubnt.unifi.risk_level = schema.level;
       }
-    tag: set_risk_from_cef_unifirisk
+    tag: set_event_risk_score_from_cef_unifirisk
 
 - set:
     field: event.url
@@ -290,7 +305,7 @@ processors:
     - cef.extensions.UNIFIdeviceName # client.domain
     - cef.extensions.UNIFIhost # host.hostname
     - cef.extensions.UNIFIreference # event.url
-    - cef.extensions.UNIFIrisk # risk.level
+    - cef.extensions.UNIFIrisk # event.risk_score / event.risk_score_norm / ubnt.unifi.risk_level
     - cef.extensions.admin_ip # source.address
     - cef.extensions.message # message
     - cef.extensions.signature_type # rule.ruleset

@@ -291,6 +291,8 @@ An example event for `logs` looks as following:
 | data_stream.dataset | Data stream dataset. | constant_keyword |
 | data_stream.namespace | Data stream namespace. | constant_keyword |
 | data_stream.type | Data stream type. | constant_keyword |
+| destination.locality | Whether the destination IP is private (internal) or public (external). Derived from network.direction, not from a true flow -- see the description on that field. | keyword |
+| flow.locality | Identifies whether the flow involved public IP addresses or only private (internal) addresses. Derived from network.direction, not a real flow -- see the description on that field. | keyword |
 | input.type | Input type. | keyword |
 | iptables.ether_type | Value of the ethernet type field identifying the network layer protocol. | long |
 | iptables.flow_label | IPv6 flow label. | integer |
@@ -331,6 +333,7 @@ An example event for `logs` looks as following:
 | log.file.inode | Inode number of the log file. | keyword |
 | log.offset | Offset of the entry in the log file. | long |
 | log.source.address |  | keyword |
+| source.locality | Whether the source IP is private (internal) or public (external). Derived from network.direction, not from a true flow -- see the description on that field. | keyword |
 | ubnt.unifi.dhcp.interface | The interface name associated with the DHCP event | keyword |
 | ubnt.unifi.dhcp.ip | The IP address associated to the source | keyword |
 | ubnt.unifi.dhcp.mac | The MAC address associated to the source | keyword |
@@ -342,6 +345,7 @@ An example event for `logs` looks as following:
 | ubnt.unifi.earlyoom.swap.total | The total amount of swap available | integer |
 | ubnt.unifi.earlyoom.swap.used | The amount of swap used | integer |
 | ubnt.unifi.earlyoom.swap.used_pct | The percentage of swap used | float |
+| ubnt.unifi.function | The daemon-reported function/method name associated with a generic "process[pid]: module.function(): message" style log line, e.g. from mcad or ubnt-fanctrl. | keyword |
 | ubnt.unifi.linkcheck.city | The city associated with the link check | keyword |
 | ubnt.unifi.linkcheck.country | The country associated with the link check | keyword |
 | ubnt.unifi.linkcheck.countryCode | The country code associated with the link check | keyword |
@@ -361,8 +365,10 @@ An example event for `logs` looks as following:
 | ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.bssid | The BSSID associated with the wireless aggregate stats | keyword |
 | ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.radio | The radio associated with the wireless aggregate stats | keyword |
 | ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.satisfaction_now | The satisfaction now associated with the wireless aggregate stats | keyword |
+| ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.signal | The signal strength associated with the wireless aggregate stats | keyword |
 | ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.sta | The STA associated with the wireless aggregate stats | keyword |
 | ubnt.unifi.mcad.wireless_agg_stats.log_sta_anomalies.vap | The VAP associated with the wireless aggregate stats | keyword |
+| ubnt.unifi.risk_level | Qualitative risk level reported by UniFi (Low/Medium/High) for CEF events that include a UNIFIrisk extension. ECS has no top-level qualitative risk field (risk.\* is reusable only under host.risk.\*/user.risk.\*), so this is kept as a custom field alongside the ECS-mapped event.risk_score/event.risk_score_norm. | keyword |
 | ubnt.unifi.stahtd.dump.arp_reply_gw_seen |  | keyword |
 | ubnt.unifi.stahtd.dump.assoc_delta |  | keyword |
 | ubnt.unifi.stahtd.dump.assoc_status |  | keyword |

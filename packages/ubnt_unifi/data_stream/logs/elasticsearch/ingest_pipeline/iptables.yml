@@ -146,6 +146,50 @@ processors:
     icmp_type: iptables.icmp.type
     icmp_code: iptables.icmp.code
 
+- set:
+    description: >-
+      Map the logged packet's length to network.bytes/source.bytes so this event gets the same
+      Discover/Security "network flow" event renderer as true NetFlow records (which keys off
+      source.bytes/destination.bytes, not just network.bytes). This is a per-packet value, not a true
+      flow total: UniFi's firewall logging only logs packets that match a logging-enabled rule (often just
+      the connection-initiating packet), it does not sum bytes across a whole session the way a flow
+      exporter does. Only source.bytes is set (not destination.bytes) since the logged packet is
+      one-directional, from source to destination; we have no visibility into any return traffic.
+    field: network.bytes
+    copy_from: iptables.length
+    ignore_empty_value: true
+
+- set:
+    description: Each iptables log line represents exactly one logged packet.
+    if: ctx.network?.bytes != null
+    field: network.packets
+    value: 1
+
+- set:
+    description: >-
+      Same per-packet value as network.bytes, but in the directional field (source -> destination) that
+      Kibana's network flow views/renderers actually query.
+    field: source.bytes
+    copy_from: iptables.length
+    ignore_empty_value: true
+
+- set:
+    description: Each iptables log line represents exactly one logged packet, from source to destination.
+    if: ctx.source?.bytes != null
+    field: source.packets
+    value: 1
+
+- script:
+    description: "Set network.type (ipv4/ipv6) based on whether source.ip contains a colon"
+    tag: set_network_type_from_source_ip
+    if: ctx.source?.ip != null
+    lang: painless
+    source: >
+      if (ctx.network == null) {
+        ctx.network = new HashMap();
+      }
+      ctx.network.type = ctx.source.ip.contains(':') ? 'ipv6' : 'ipv4';
+
 - script:
     description: Convert bit fields to numbers.
     lang: painless
@@ -238,6 +282,49 @@ processors:
     tag: network_direction
     ignore_missing: true
     internal_networks_field: _config.internal_networks
+
+- script:
+    description: >-
+      Derive ECS source.locality/destination.locality/flow.locality from the network.direction computed
+      above, so this event carries the same locality fields Kibana's netflow-sourced events have (these
+      are a distinct ECS concept from network.direction, but describe the same internal/external
+      boundary).
+    tag: set_locality_from_network_direction
+    if: ctx.network?.direction != null
+    lang: painless
+    source: >
+      String direction = ctx.network.direction;
+      String srcLocality = null;
+      String dstLocality = null;
+      if (direction == 'internal') {
+        srcLocality = 'internal';
+        dstLocality = 'internal';
+      } else if (direction == 'external') {
+        srcLocality = 'external';
+        dstLocality = 'external';
+      } else if (direction == 'inbound') {
+        srcLocality = 'external';
+        dstLocality = 'internal';
+      } else if (direction == 'outbound') {
+        srcLocality = 'internal';
+        dstLocality = 'external';
+      }
+      if (srcLocality != null) {
+        if (ctx.source == null) {
+          ctx.source = new HashMap();
+        }
+        ctx.source.locality = srcLocality;
+      }
+      if (dstLocality != null) {
+        if (ctx.destination == null) {
+          ctx.destination = new HashMap();
+        }
+        ctx.destination.locality = dstLocality;
+      }
+      if (ctx.flow == null) {
+        ctx.flow = new HashMap();
+      }
+      ctx.flow.locality = direction == 'internal' ? 'internal' : 'external';
 
 #########################################
 ## Clean Up "iptables" specific fields ##

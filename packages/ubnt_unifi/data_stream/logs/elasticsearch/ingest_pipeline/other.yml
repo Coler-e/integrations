@@ -15,22 +15,54 @@ processors:
     ignore_missing: true
     ignore_failure: true
     patterns:
-        - 'stahtd: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: \[STA-TRACKER\].stahtd_dump_event\(\): %{GREEDYDATA:message}'
-        - 'mcad: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: wireless_agg_stats.log_sta_anomalies\(\): %{GREEDYDATA:message}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: %{DATA:ubnt.unifi.linkcheck.function}\(\): resultUrl: %{GREEDYDATA:ubnt.unifi.linkcheck.resultUrl}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: %{DATA:ubnt.unifi.linkcheck.function}\(\): Completed: Downlink %{NUMBER:ubnt.unifi.linkcheck.downlink.speed:float} %{WORD:ubnt.unifi.linkcheck.downlink.rate}, Uplink %{NUMBER:ubnt.unifi.linkcheck.uplink.speed:float} %{WORD:ubnt.unifi.linkcheck.uplink.rate}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: (?<ubnt.unifi.linkcheck.function>speedtest\.ui_speedtest_log_results)\(\): (?<message>(.|\r|\n)*)'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: mem avail:%{SPACE}%{POSINT:ubnt.unifi.earlyoom.memory.used:int}%{SPACE}of%{SPACE}%{POSINT:ubnt.unifi.earlyoom.memory.total:int}%{SPACE}MiB%{SPACE}\(%{NUMBER:ubnt.unifi.earlyoom.memory.used_pct:float}%\),%{SPACE}swap free:%{SPACE}%{POSINT:ubnt.unifi.earlyoom.swap.used:int}%{SPACE}of%{SPACE}%{POSINT:ubnt.unifi.earlyoom.swap.total:int}%{SPACE}MiB%{SPACE}\(%{NUMBER:ubnt.unifi.earlyoom.swap.used_pct:float}%\)%{GREEDYDATA}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: DHCP%{DATA:ubnt.unifi.dhcp.message}\(%{DATA:ubnt.unifi.dhcp.interface}\) %{IP:ubnt.unifi.dhcp.ip} %{MAC:ubnt.unifi.dhcp.mac} %{GREEDYDATA:ubnt.unifi.dhcp.name}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: DHCP%{DATA:ubnt.unifi.dhcp.message}\(%{DATA:ubnt.unifi.dhcp.interface}\) %{IP:ubnt.unifi.dhcp.ip} %{MAC:ubnt.unifi.dhcp.mac}'
-        - '%{PROCESS_NAME:process.parent.name}\[%{POSINT:process.parent.pid:int}\]: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: %{GREEDYDATA:message}'
-        - '%{PROCESS_NAME:process.parent.name}\[%{POSINT:process.parent.pid:int}\]: %{PROCESS_NAME:process.name}: %{GREEDYDATA:message}'
-        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: %{GREEDYDATA:message}'
-        - '%{PROCESS_NAME:process.parent.name}: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:int}\]: %{GREEDYDATA:message}'
+        - 'stahtd: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: \[STA-TRACKER\].stahtd_dump_event\(\): %{GREEDYDATA:message}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{DATA:ubnt.unifi.linkcheck.function}\(\): resultUrl: %{GREEDYDATA:ubnt.unifi.linkcheck.resultUrl}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{DATA:ubnt.unifi.linkcheck.function}\(\): Completed: Downlink %{NUMBER:ubnt.unifi.linkcheck.downlink.speed:float} %{WORD:ubnt.unifi.linkcheck.downlink.rate}, Uplink %{NUMBER:ubnt.unifi.linkcheck.uplink.speed:float} %{WORD:ubnt.unifi.linkcheck.uplink.rate}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: (?<ubnt.unifi.linkcheck.function>speedtest\.ui_speedtest_log_results)\(\): (?<message>(.|\r|\n)*)'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: mem avail:%{SPACE}%{POSINT:ubnt.unifi.earlyoom.memory.used:int}%{SPACE}of%{SPACE}%{POSINT:ubnt.unifi.earlyoom.memory.total:int}%{SPACE}MiB%{SPACE}\(%{NUMBER:ubnt.unifi.earlyoom.memory.used_pct:float}%\),%{SPACE}swap free:%{SPACE}%{POSINT:ubnt.unifi.earlyoom.swap.used:int}%{SPACE}of%{SPACE}%{POSINT:ubnt.unifi.earlyoom.swap.total:int}%{SPACE}MiB%{SPACE}\(%{NUMBER:ubnt.unifi.earlyoom.swap.used_pct:float}%\)%{GREEDYDATA}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: DHCP%{DATA:ubnt.unifi.dhcp.message}\(%{DATA:ubnt.unifi.dhcp.interface}\) %{IP:ubnt.unifi.dhcp.ip} %{MAC:ubnt.unifi.dhcp.mac} %{GREEDYDATA:ubnt.unifi.dhcp.name}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: DHCP%{DATA:ubnt.unifi.dhcp.message}\(%{DATA:ubnt.unifi.dhcp.interface}\) %{IP:ubnt.unifi.dhcp.ip} %{MAC:ubnt.unifi.dhcp.mac}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{DATA:ubnt.unifi.function}\(\): %{GREEDYDATA:message}'
+        - '%{PROCESS_NAME:process.parent.name}\[%{POSINT:process.parent.pid:long}\]: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{GREEDYDATA:message}'
+        - '%{PROCESS_NAME:process.parent.name}\[%{POSINT:process.parent.pid:long}\]: %{PROCESS_NAME:process.name}: %{GREEDYDATA:message}'
+        - '%{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{GREEDYDATA:message}'
+        - '%{PROCESS_NAME:process.parent.name}: %{PROCESS_NAME:process.name}\[%{POSINT:process.pid:long}\]: %{GREEDYDATA:message}'
         - '%{PROCESS_NAME:process.parent.name}: %{PROCESS_NAME:process.name}: %{GREEDYDATA:message}'
         - '%{PROCESS_NAME:process.name}: %{GREEDYDATA:message}'
     pattern_definitions:
       PROCESS_NAME: "[^:\\[\\]\ ]+"
+
+- script:
+    description: "Assign event.category/type/kind based on the classified process.name, only for process names we have real confidence about; unmapped names are left with category unset"
+    tag: set_event_kind_type_category_script_from_process_name
+    if: ctx.process?.name != null
+    lang: painless
+    params:
+      "dhcp-client":               {"kind": "event", "type": ["connection","info"], "category": ["network"]}
+      "odhcp6c":                   {"kind": "event", "type": ["connection","info"], "category": ["network"]}
+      "dnsmasq-dhcp":              {"kind": "event", "type": ["connection","info"], "category": ["network"]}
+      "kernel":                    {"kind": "event", "type": ["info"], "category": ["host"]}
+      "earlyoom":                  {"kind": "event", "type": ["info"], "category": ["host"]}
+      "ubnt-fanctrl":              {"kind": "event", "type": ["info"], "category": ["host"]}
+      "systemd":                   {"kind": "event", "type": ["info"], "category": ["host"]}
+      "dbus-daemon":               {"kind": "event", "type": ["info"], "category": ["host"]}
+      "unifi-mq-broker":           {"kind": "event", "type": ["info"], "category": ["host"]}
+      "/usr/bin/unifi-mq-broker":  {"kind": "event", "type": ["info"], "category": ["host"]}
+      "systemd-timedated.service": {"kind": "event", "type": ["info"], "category": ["host"]}
+      "linkcheck":                 {"kind": "event", "type": ["info"], "category": ["network"]}
+      "stahtd":                    {"kind": "event", "type": ["connection","info"], "category": ["network"]}
+      "mcad":                      {"kind": "event", "type": ["info"], "category": ["network"]}
+      "syslog-ng":                 {"kind": "event", "type": ["connection","info"], "category": ["host","network"]}
+    source: >
+      def schema = params[ctx.process.name];
+      if (schema != null) {
+        if (ctx.event == null) {
+          ctx.event = new HashMap();
+        }
+        ctx.event.kind = schema.kind;
+        ctx.event.type = schema.type;
+        ctx.event.category = schema.category;
+      }
 
 - json:
     description: Attempt to parse JSON format stahtd event dump

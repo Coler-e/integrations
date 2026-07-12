@@ -1,7 +1,7 @@
 {
     "expected": [
         {
-            "@timestamp": "2025-07-05T04:29:55.000Z",
+            "@timestamp": "2026-07-05T14:29:55.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
                 "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
@@ -13,9 +13,13 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "original": "Jul  5 14:29:55 unifi-ap3 0123456789aa,U6-Lite-6.7.17+15512: stahtd: stahtd[2786]: [STA-TRACKER].stahtd_dump_event(): {\"message_type\":\"STA_ASSOC_TRACKER\",\"mac\":\"01:23:45:01:f2:b8\",\"vap\":\"ra0\",\"event_type\":\"sta_leave\",\"assoc_status\":\"0\",\"event_id\":\"0\",\"sta_dc_reason\":\"sta left\",\"disassoc_reason\":\"8\"}",
                 "type": [
+                    "connection",
                     "info"
                 ]
             },
@@ -76,7 +80,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-05T04:30:40.000Z",
+            "@timestamp": "2026-07-05T14:30:40.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
                 "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
@@ -132,7 +136,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-05T04:30:40.000Z",
+            "@timestamp": "2026-07-05T14:30:40.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
                 "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
@@ -188,7 +192,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-05T04:32:04.000Z",
+            "@timestamp": "2026-07-05T14:32:04.000Z",
             "agent": {
                 "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
                 "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
@@ -222,7 +226,7 @@
                     "hostname": "unifi-ap3"
                 }
             },
-            "message": "wireless_agg_stats.log_sta_anomalies(): bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=72 anomalies=tcp_latency",
+            "message": "bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=72 anomalies=tcp_latency",
             "observer": {
                 "hostname": "unifi-ap3",
                 "product": "U6-Lite",
@@ -231,11 +235,7 @@
                 "version": "6.7.17+15512"
             },
             "process": {
-                "name": "mcad",
-                "parent": {
-                    "name": "libubnt",
-                    "pid": 15024
-                },
+                "name": "libubnt",
                 "pid": 15024
             },
             "related": {
@@ -248,10 +248,15 @@
                 "preserve_duplicate_custom_fields",
                 "forwarded",
                 "ubnt-unifi-other"
-            ]
+            ],
+            "ubnt": {
+                "unifi": {
+                    "function": "mcad[15024]: wireless_agg_stats.log_sta_anomalies"
+                }
+            }
         },
         {
-            "@timestamp": "2025-07-16T11:39:08.000Z",
+            "@timestamp": "2026-07-16T21:39:08.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -263,6 +268,9 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
                     "info"
@@ -280,7 +288,7 @@
                 },
                 "offset": 19073,
                 "syslog": {
-                    "appname": "0123456789aa,U6-Lite-6.7.17+15512",
+                    "appname": "78455848ab58,U6-Lite-6.7.17+15512",
                     "facility": {
                         "code": 3,
                         "name": "system"
@@ -293,15 +301,19 @@
                     }
                 }
             },
+            "message": "wireless_agg_stats.log_sta_anomalies(): bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=56 anomalies=tcp_latency",
             "observer": {
                 "hostname": "unifi-ap3",
                 "product": "U6-Lite",
-                "serial_number": "0123456789aa",
+                "serial_number": "78455848ab58",
                 "vendor": "Ubiquiti",
                 "version": "6.7.17+15512"
             },
             "process": {
                 "name": "mcad",
+                "parent": {
+                    "name": "mcad"
+                },
                 "pid": 26341
             },
             "related": {
@@ -312,26 +324,10 @@
             "tags": [
                 "forwarded",
                 "ubnt-unifi-other"
-            ],
-            "ubnt": {
-                "unifi": {
-                    "mcad": {
-                        "wireless_agg_stats": {
-                            "log_sta_anomalies": {
-                                "anomalies": "tcp_latency",
-                                "bssid": "7a:45:58:28:ab:59",
-                                "radio": "ra0",
-                                "satisfaction_now": "56",
-                                "sta": "a0:a3:b3:1f:be:e0",
-                                "vap": "ra2"
-                            }
-                        }
-                    }
-                }
-            }
+            ]
         },
         {
-            "@timestamp": "2025-07-16T11:37:20.000Z",
+            "@timestamp": "2026-07-16T21:37:20.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -343,6 +339,9 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
                     "info"
@@ -407,7 +406,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-16T11:37:20.000Z",
+            "@timestamp": "2026-07-16T21:37:20.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -419,6 +418,9 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
                     "info"
@@ -476,7 +478,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-16T12:12:41.000Z",
+            "@timestamp": "2026-07-16T22:12:41.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -488,6 +490,9 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "host"
+                ],
                 "kind": "event",
                 "type": [
                     "info"
@@ -553,7 +558,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-16T12:09:43.000Z",
+            "@timestamp": "2026-07-16T22:09:43.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -617,7 +622,7 @@
             ]
         },
         {
-            "@timestamp": "2025-07-16T12:34:29.000Z",
+            "@timestamp": "2026-07-16T22:34:29.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -629,8 +634,12 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
+                    "connection",
                     "info"
                 ]
             },
@@ -689,7 +698,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-16T12:34:29.000Z",
+            "@timestamp": "2026-07-16T22:34:29.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -701,8 +710,12 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
+                    "connection",
                     "info"
                 ]
             },
@@ -760,7 +773,7 @@
             }
         },
         {
-            "@timestamp": "2025-07-16T11:37:20.000Z",
+            "@timestamp": "2026-07-16T21:37:20.000Z",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -772,6 +785,9 @@
                 "version": "8.17.0"
             },
             "event": {
+                "category": [
+                    "network"
+                ],
                 "kind": "event",
                 "type": [
                     "info"
@@ -832,6 +848,539 @@
                             "speed": 23.0
                         }
                     }
+                }
+            }
+        },
+        null,
+        {
+            "@timestamp": "2026-07-09T02:34:10.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "network"
+                ],
+                "kind": "event",
+                "type": [
+                    "connection",
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "Adding PD address: {",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "dhcp-client",
+                "parent": {
+                    "name": "ubios-udapi-server",
+                    "pid": 1076
+                }
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:34:10.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "network"
+                ],
+                "kind": "event",
+                "type": [
+                    "connection",
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "Starting RENEW transaction (timeout 90s, max rc 0)",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "odhcp6c",
+                "parent": {
+                    "name": "ubios-udapi-server",
+                    "pid": 5959
+                },
+                "pid": 5959
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:33:20.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "host"
+                ],
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "[system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.65623' (uid=0 pid=242691 comm=\"timedatectl show -p NTPSynchronized --value \")",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "dbus-daemon",
+                "pid": 780
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:34:38.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "host"
+                ],
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "MEM usage flows=383 dying=0 dns=147 ifaces=20 dnsResolv=84 routines=30",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "/usr/bin/unifi-mq-broker",
+                "pid": 2021
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:33:20.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "host"
+                ],
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "Succeeded.",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "systemd-timedated.service",
+                "parent": {
+                    "name": "systemd",
+                    "pid": 1
+                }
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:29:17.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "host",
+                    "network"
+                ],
+                "kind": "event",
+                "type": [
+                    "connection",
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "Syslog connection established; fd='32', server='AF_INET(192.168.1.230:8080)', local='AF_INET(0.0.0.0:0)'",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "syslog-ng",
+                "pid": 223614
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T04:14:19.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "network"
+                ],
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "udp"
+            },
+            "log": {
+                "syslog": {
+                    "appname": "8c306682ee14,U7-Pro-XG-8.6.11+18870",
+                    "hostname": "U7ProXG"
+                }
+            },
+            "observer": {
+                "hostname": "U7ProXG",
+                "product": "U7-Pro-XG",
+                "serial_number": "8c306682ee14",
+                "vendor": "Ubiquiti",
+                "version": "8.6.11+18870"
+            },
+            "process": {
+                "name": "mcad",
+                "pid": 6335
+            },
+            "related": {
+                "hosts": [
+                    "U7ProXG"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ],
+            "ubnt": {
+                "unifi": {
+                    "function": "wireless_agg_stats.log_sta_anomalies",
+                    "mcad": {
+                        "wireless_agg_stats": {
+                            "log_sta_anomalies": {
+                                "anomalies": "tcp_latency",
+                                "bssid": "8c:30:66:82:ee:17",
+                                "radio": "wifi2",
+                                "satisfaction_now": "73",
+                                "signal": "-70",
+                                "sta": "84:9e:56:d5:11:7f",
+                                "vap": "wifi2ap5"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "@timestamp": "2026-07-05T13:58:33.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "unifi"
+                }
+            },
+            "message": "/data/unifi-directory/tmp/.restore_status: No such file or directory",
+            "observer": {
+                "hostname": "unifi",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "cat",
+                "parent": {
+                    "name": "pre-start.sh",
+                    "pid": 1464721
+                }
+            },
+            "related": {
+                "hosts": [
+                    "unifi"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-09T02:36:11.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "filestream"
+            },
+            "log": {
+                "syslog": {
+                    "hostname": "Colere-Gateway"
+                }
+            },
+            "message": "Routine execution time of 699ms exceeds expectations in io_context_ext (sfp-speed-detect(eth5) timer event)",
+            "observer": {
+                "hostname": "Colere-Gateway",
+                "product": "UniFi",
+                "vendor": "Ubiquiti"
+            },
+            "process": {
+                "name": "utils-daemon",
+                "parent": {
+                    "name": "ubios-udapi-server",
+                    "pid": 1076
+                }
+            },
+            "related": {
+                "hosts": [
+                    "Colere-Gateway"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ]
+        },
+        {
+            "@timestamp": "2026-07-11T11:36:47.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "category": [
+                    "host"
+                ],
+                "kind": "event",
+                "type": [
+                    "info"
+                ]
+            },
+            "input": {
+                "type": "udp"
+            },
+            "log": {
+                "syslog": {
+                    "appname": "8c306682ee14,U7-Pro-XG-8.6.11+18870",
+                    "hostname": "U7ProXG"
+                }
+            },
+            "message": "Sensor wifi1 temp: 72°C",
+            "observer": {
+                "hostname": "U7ProXG",
+                "product": "U7-Pro-XG",
+                "serial_number": "8c306682ee14",
+                "vendor": "Ubiquiti",
+                "version": "8.6.11+18870"
+            },
+            "process": {
+                "name": "ubnt-fanctrl",
+                "pid": 736
+            },
+            "related": {
+                "hosts": [
+                    "U7ProXG"
+                ]
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-other"
+            ],
+            "ubnt": {
+                "unifi": {
+                    "function": "fanctrl.fanctrl_log"
                 }
             }
         }

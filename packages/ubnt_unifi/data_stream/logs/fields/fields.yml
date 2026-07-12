@@ -1,3 +1,12 @@
+- name: flow.locality
+  type: keyword
+  description: Identifies whether the flow involved public IP addresses or only private (internal) addresses. Derived from network.direction, not a real flow -- see the description on that field.
+- name: destination.locality
+  type: keyword
+  description: Whether the destination IP is private (internal) or public (external). Derived from network.direction, not from a true flow -- see the description on that field.
+- name: source.locality
+  type: keyword
+  description: Whether the source IP is private (internal) or public (external). Derived from network.direction, not from a true flow -- see the description on that field.
 - name: cef
   type: group
   fields:
@@ -209,6 +218,12 @@
                   type: float
                   description: The percentage of swap used
                   example: 50.0
+        - name: function
+          type: keyword
+          description: >-
+            The daemon-reported function/method name associated with a generic "process[pid]:
+            module.function(): message" style log line, e.g. from mcad or ubnt-fanctrl.
+          example: wireless_agg_stats.log_sta_anomalies
         - name: linkcheck
           type: group
           fields:
@@ -303,6 +318,10 @@
                       type: keyword
                       description: The satisfaction now associated with the wireless aggregate stats
                       example: 0.95
+                    - name: signal
+                      type: keyword
+                      description: The signal strength associated with the wireless aggregate stats
+                      example: -70
                     - name: sta
                       type: keyword
                       description: The STA associated with the wireless aggregate stats
@@ -311,6 +330,14 @@
                       type: keyword
                       description: The VAP associated with the wireless aggregate stats
                       example: "vap0"
+        - name: risk_level
+          type: keyword
+          description: >-
+            Qualitative risk level reported by UniFi (Low/Medium/High) for CEF events that include a
+            UNIFIrisk extension. ECS has no top-level qualitative risk field (risk.* is reusable only
+            under host.risk.*/user.risk.*), so this is kept as a custom field alongside the ECS-mapped
+            event.risk_score/event.risk_score_norm.
+          example: High
         - name: stahtd
           type: group
           fields:

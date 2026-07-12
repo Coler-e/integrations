@@ -1,7 +1,7 @@
 format_version: 3.3.2
 name: ubnt_unifi
 title: "Ubiquiti Unifi"
-version: 0.1.6
+version: 0.1.15
 description: "Ubiquiti Unifi"
 type: integration
 categories:
@@ -37,5 +37,5 @@ policy_templates:
         title: Collect Ubiquiti Unifi events via webhooks
         description: Collect Ubiquiti Unifi events via webhooks
 owner:
-  github: routedlogic/integrations
+  github: elastic/sec-deployment-and-devices
   type: community

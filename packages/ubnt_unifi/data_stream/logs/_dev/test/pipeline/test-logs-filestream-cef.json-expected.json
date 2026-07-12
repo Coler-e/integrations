@@ -450,7 +450,6 @@
                 "original": "Jul  5 04:29:04 unifi.example.com 2025-07-05T04: 29:04.222Z unifi-r1 CEF:0|Ubiquiti|UniFi Network|9.3.33|202|Honeypot Triggered|6|UNIFIcategory=Security UNIFIsubCategory=Honeypot UNIFIhost=unifi-r1 UNIFIdeviceMac=01:23:45:89:c2:43 UNIFIdeviceName=unifi-r1 UNIFIdeviceModel=UniFi Dream Machine PRO SE UNIFIdeviceIp=10.238.202.175 UNIFIdeviceVersion=4.3.5 UNIFIclientAlias=NUC UNIFIclientHostname=nuc UNIFIclientMac=01:23:45:9c:98:4c msg=Honeypot triggered by NUC.",
                 "severity": 6,
                 "type": [
-                    "access",
                     "info"
                 ]
             },
@@ -557,6 +556,8 @@
                 "kind": "alert",
                 "original": "Jul  5 04:29:36 unifi.example.com 2025-07-05T04: 29:36.878Z unifi-r1 CEF:0|Ubiquiti|UniFi Network|9.3.33|201|Threat Detected and Blocked|9|proto=TCP src=10.238.202.175 spt=60700 dst=10.238.202.175 dpt=8000 UNIFIcategory=Security UNIFIsubCategory=Intrusion Prevention UNIFIhost=unifi-r1 UNIFIdeviceMac=01:23:45:89:c2:43 UNIFIdeviceName=unifi-r1 UNIFIdeviceModel=UniFi Dream Machine PRO SE UNIFIdeviceIp=10.238.202.175 UNIFIdeviceVersion=4.3.5 UNIFIrisk=high UNIFIipsSessionId=255132502100797 UNIFIipsSignature=ET SCAN Possible Nmap User-Agent Observed UNIFIipsSignatureId=2024364 msg=A network intrusion attempt from 10.238.202.175 to 10.238.202.175 has been detected and blocked.",
                 "reason": "ET SCAN Possible Nmap User-Agent Observed",
+                "risk_score": 75,
+                "risk_score_norm": 75,
                 "severity": 9,
                 "type": [
                     "denied",
@@ -601,11 +602,6 @@
                     "10.238.202.175"
                 ]
             },
-            "risk": {
-                "static_level": "High",
-                "static_score": 75,
-                "static_score_norm": 75
-            },
             "source": {
                 "address": "10.238.202.175",
                 "ip": "10.238.202.175",
@@ -616,7 +612,12 @@
                 "preserve_duplicate_custom_fields",
                 "forwarded",
                 "ubnt-unifi-cef"
-            ]
+            ],
+            "ubnt": {
+                "unifi": {
+                    "risk_level": "High"
+                }
+            }
         },
         {
             "@timestamp": "2025-07-15T22:24:19.421Z",

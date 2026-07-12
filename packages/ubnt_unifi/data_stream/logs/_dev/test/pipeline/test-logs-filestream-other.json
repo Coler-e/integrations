@@ -20,10 +20,7 @@
                     "path": "/home/some.admin/tmp/ubnt_unifi-samples-filestream.log",
                     "device_id": "64773"
                 },
-                "syslog": {
-                    "hostname": "unifi-ap3",
-                    "appname": "0123456789aa,U6-Lite-6.7.17+15512"
-                }
+                "syslog": {}
             },
             "event": {
                 "original": "Jul  5 14:29:55 unifi-ap3 0123456789aa,U6-Lite-6.7.17+15512: stahtd: stahtd[2786]: [STA-TRACKER].stahtd_dump_event(): {\"message_type\":\"STA_ASSOC_TRACKER\",\"mac\":\"01:23:45:01:f2:b8\",\"vap\":\"ra0\",\"event_type\":\"sta_leave\",\"assoc_status\":\"0\",\"event_id\":\"0\",\"sta_dc_reason\":\"sta left\",\"disassoc_reason\":\"8\"}"
@@ -31,13 +28,11 @@
             "tags": [
                 "preserve_original_event",
                 "preserve_duplicate_custom_fields",
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
-            },
-            "message": "stahtd: stahtd[2786]: [STA-TRACKER].stahtd_dump_event(): {\"message_type\":\"STA_ASSOC_TRACKER\",\"mac\":\"01:23:45:01:f2:b8\",\"vap\":\"ra0\",\"event_type\":\"sta_leave\",\"assoc_status\":\"0\",\"event_id\":\"0\",\"sta_dc_reason\":\"sta left\",\"disassoc_reason\":\"8\"}"
+            }
         },
         {
             "@timestamp": "2025-07-05T04:30:40.000Z",
@@ -59,9 +54,7 @@
                     "fingerprint": "4971336f945694d052c56620d03d45fc31bdbba970ed13f50e2e10bfc2f46eeb"
                 },
                 "offset": 329808,
-                "syslog": {
-                    "hostname": "unifi-r1"
-                }
+                "syslog": {}
             },
             "event": {
                 "original": "Jul  5 14:30:40 unifi-r1 unifi-r1 utmdaemon[1574169]: [INFO] utm_start_honeypot:1160: UTM Honeypot Service: Starting Thread"
@@ -69,17 +62,14 @@
             "tags": [
                 "preserve_original_event",
                 "preserve_duplicate_custom_fields",
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
-            },
-            "message": "utmdaemon[1574169]: [INFO] utm_start_honeypot:1160: UTM Honeypot Service: Starting Thread"
+            }
         },
         {
             "@timestamp": "2025-07-05T04:30:40.000Z",
-            "message": "ubios-udapi-server[1574169]: [INFO] utm_start_honeypot:1160: UTM Honeypot Service: Starting Thread",
             "ecs": {
                 "version": "8.0.0"
             },
@@ -98,9 +88,7 @@
                     "inode": "25962857",
                     "fingerprint": "4971336f945694d052c56620d03d45fc31bdbba970ed13f50e2e10bfc2f46eeb"
                 },
-                "syslog": {
-                    "hostname": "unifi-r1"
-                }
+                "syslog": {}
             },
             "event": {
                 "original": "Jul  5 14:30:40 unifi-r1 unifi-r1 ubios-udapi-server[1574169]: [INFO] utm_start_honeypot:1160: UTM Honeypot Service: Starting Thread"
@@ -108,8 +96,7 @@
             "tags": [
                 "preserve_original_event",
                 "preserve_duplicate_custom_fields",
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
@@ -135,10 +122,7 @@
                     "inode": "25962857",
                     "fingerprint": "4971336f945694d052c56620d03d45fc31bdbba970ed13f50e2e10bfc2f46eeb"
                 },
-                "syslog": {
-                    "hostname": "unifi-ap3",
-                    "appname": "0123456789aa,U6-Lite-6.7.17+15512"
-                }
+                "syslog": {}
             },
             "event": {
                 "original": "Jul  5 14:32:04 unifi-ap3 0123456789aa,U6-Lite-6.7.17+15512: libubnt[15024]: mcad[15024]: wireless_agg_stats.log_sta_anomalies(): bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=72 anomalies=tcp_latency"
@@ -146,13 +130,11 @@
             "tags": [
                 "preserve_original_event",
                 "preserve_duplicate_custom_fields",
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
-            },
-            "message": "libubnt[15024]: mcad[15024]: wireless_agg_stats.log_sta_anomalies(): bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=72 anomalies=tcp_latency"
+            }
         },
         {
             "@timestamp": "2025-07-16T11:39:08.000Z",
@@ -183,22 +165,18 @@
                     "severity": {
                         "code": 6,
                         "name": "Informational"
-                    },
-                    "appname": "0123456789aa,U6-Lite-6.7.17+15512",
-                    "hostname": "unifi-ap3"
+                    }
                 }
             },
             "event": {
                 "original": "<30>Jul 16 21:39:08 unifi-ap3 78455848ab58,U6-Lite-6.7.17+15512: mcad: mcad[26341]: wireless_agg_stats.log_sta_anomalies(): bssid=01:23:45:28:ab:59 radio=ra0 vap=ra2 sta=01:23:45:1f:be:e0 satisfaction_now=56 anomalies=tcp_latency"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
-            },
-            "message": "mcad: mcad[26341]: wireless_agg_stats.log_sta_anomalies(): bssid=7a:45:58:28:ab:59 radio=ra0 vap=ra2 sta=a0:a3:b3:1f:be:e0 satisfaction_now=56 anomalies=tcp_latency"
+            }
         },
         {
             "@timestamp": "2025-07-16T11:37:20.000Z",
@@ -232,25 +210,21 @@
                         "code": 6,
                         "name": "Informational"
                     },
-                    "hostname": "unifi-r1",
                     "priority": 14
                 }
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
-            },
-            "message": "linkcheck[1583]: speedtest.ui_speedtest_log_results(): {\n  \"url\": \"http://119.18.32.1:8069\",\n  \"latitude\": -28.068000793457031,\n  \"longitude\": 153.452392578125,\n  \"provider\": \"Aussie Broadband\",\n  \"providerUrl\": \"https://www.aussiebroadband.com.au\",\n  \"city\": \"Brisbane\",\n  \"country\": \"Australia\",\n  \"countryCode\": \"AU\",\n  \"speedMbps\": 1000\n}\n"
+            }
         },
         {
             "@timestamp": "2025-07-16T11:37:20.000Z",
             "input": {
                 "type": "filestream"
             },
-            "message": "linkcheck[1583]: speedtest.ui_speedtest_log_results(): resultUrl: https://wifiman.com/?result=UUID_WOULD_BE_HERE",
             "agent": {
                 "ephemeral_id": "a050b3ef-166f-4483-a9ff-b46996c08296",
                 "id": "cda862cd-99d5-4806-a514-ea1feb145b64",
@@ -278,21 +252,18 @@
                     "severity": {
                         "code": 6,
                         "name": "Informational"
-                    },
-                    "hostname": "unifi-r1"
+                    }
                 }
             },
             "event": {
                 "original": "<14>Jul 16 21:37:20 unifi-r1 unifi-r1 linkcheck[1583]: speedtest.ui_speedtest_log_results(): resultUrl: https://wifiman.com/?result=UUID_WOULD_BE_HERE"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ]
         },
         {
             "@timestamp": "2025-07-16T12:12:41.000Z",
-            "message": "earlyoom[1581]: mem avail:   689 of  3946 MiB (17.46%), swap free: 6136 of 7167 MiB (85.61%)",
             "ecs": {
                 "version": "8.0.0"
             },
@@ -312,7 +283,6 @@
                 },
                 "offset": 20313,
                 "syslog": {
-                    "hostname": "unifi-r1",
                     "priority": 30,
                     "facility": {
                         "code": 3,
@@ -328,8 +298,7 @@
                 "original": "<30>Jul 16 22:12:41 unifi-r1 unifi-r1 earlyoom[1581]: mem avail:   689 of  3946 MiB (17.46%), swap free: 6136 of 7167 MiB (85.61%)"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
@@ -340,7 +309,6 @@
             "input": {
                 "type": "filestream"
             },
-            "message": "kernel: al_mod_eth_mac_stats_get: MAC statistics not supported in this mode RGMII (0)",
             "ecs": {
                 "version": "8.0.0"
             },
@@ -360,7 +328,6 @@
                     "fingerprint": "774aac143e417dff96abf0423c14ff696ebbdcaf59cf3195b29b13fe764d02d5"
                 },
                 "syslog": {
-                    "hostname": "unifi-r1",
                     "priority": 3,
                     "facility": {
                         "code": 0,
@@ -376,8 +343,7 @@
                 "original": "<3>Jul 16 22:09:43 unifi-r1 unifi-r1 kernel: al_mod_eth_mac_stats_get: MAC statistics not supported in this mode RGMII (0)"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ]
         },
         {
@@ -386,13 +352,11 @@
                 "original": "<30>Jul 16 22:34:29 unifi-r1 unifi-r1 dnsmasq-dhcp[3408207]: DHCPACK(br3) 192.168.0.18 01:23:45:54:f8:be L535"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
             },
-            "message": "dnsmasq-dhcp[3408207]: DHCPACK(br3) 192.168.0.18 01:23:45:54:f8:be L535",
             "agent": {
                 "type": "filebeat",
                 "version": "9.0.3",
@@ -420,8 +384,7 @@
                     "severity": {
                         "code": 6,
                         "name": "Informational"
-                    },
-                    "hostname": "unifi-r1"
+                    }
                 }
             }
         },
@@ -447,18 +410,15 @@
                     "severity": {
                         "code": 6,
                         "name": "Informational"
-                    },
-                    "hostname": "unifi-r1"
+                    }
                 }
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
             },
-            "message": "dnsmasq-dhcp[3408207]: DHCPREQUEST(br3) 192.168.0.18 01:23:45:54:f8:be",
             "ecs": {
                 "version": "8.0.0"
             },
@@ -472,7 +432,6 @@
         },
         {
             "@timestamp": "2025-07-16T11:37:20.000Z",
-            "message": "linkcheck[1583]: linkcheck.run_speedtest(): Completed: Downlink 269.000 Mbps, Uplink 23.000 Mbps",
             "ecs": {
                 "version": "8.0.0"
             },
@@ -500,19 +459,260 @@
                     "severity": {
                         "code": 6,
                         "name": "Informational"
-                    },
-                    "hostname": "bimini-r1"
+                    }
                 }
             },
             "event": {
                 "original": "<14>Jul 16 21:37:20 bimini-r1 bimini-r1 linkcheck[1583]: linkcheck.run_speedtest(): Completed: Downlink 269.000 Mbps, Uplink 23.000 Mbps"
             },
             "tags": [
-                "forwarded",
-                "ubnt-unifi-other"
+                "forwarded"
             ],
             "input": {
                 "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2025-07-05T04:29:55.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "Jul  5 14:29:55 unifi-ap3 unifi-ap3 systemd[1]: Reloading."
+            },
+            "tags": [
+                "forwarded",
+                "ubnt-unifi-drop-noise-requested"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:34:10.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<14>Jul  9 02:34:10 Colere-Gateway Colere-Gateway ubios-udapi-server[1076]: dhcp-client: Adding PD address: {"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:34:10.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<30>Jul  9 02:34:10 Colere-Gateway Colere-Gateway ubios-udapi-server[5959]: odhcp6c[5959]: Starting RENEW transaction (timeout 90s, max rc 0)"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:33:20.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<30>Jul  9 02:33:20 Colere-Gateway Colere-Gateway dbus-daemon[780]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.65623' (uid=0 pid=242691 comm=\"timedatectl show -p NTPSynchronized --value \")"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:34:38.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<30>Jul  9 02:34:38 Colere-Gateway Colere-Gateway /usr/bin/unifi-mq-broker[2021]: MEM usage flows=383 dying=0 dns=147 ifaces=20 dnsResolv=84 routines=30"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:33:20.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<30>Jul  9 02:33:20 Colere-Gateway Colere-Gateway systemd[1]: systemd-timedated.service: Succeeded."
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:29:17.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<45>Jul  9 02:29:17 Colere-Gateway Colere-Gateway syslog-ng[223614]: Syslog connection established; fd='32', server='AF_INET(192.168.1.230:8080)', local='AF_INET(0.0.0.0:0)'"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T04:14:19.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<14>Jul  9 04:14:19 U7ProXG 8c306682ee14,U7-Pro-XG-8.6.11+18870: mcad[6335]: wireless_agg_stats.log_sta_anomalies(): bssid=8c:30:66:82:ee:17 radio=wifi2 vap=wifi2ap5 sta=84:9e:56:d5:11:7f signal=-70 satisfaction_now=73 anomalies=tcp_latency"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "udp"
+            }
+        },
+        {
+            "@timestamp": "2025-07-05T13:58:33.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "Jul  5 13:58:33 unifi unifi pre-start.sh[1464721]: cat: /data/unifi-directory/tmp/.restore_status: No such file or directory"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-09T02:36:11.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<12>Jul  9 02:36:11 Colere-Gateway Colere-Gateway ubios-udapi-server[1076]: utils-daemon: Routine execution time of 699ms exceeds expectations in io_context_ext (sfp-speed-detect(eth5) timer event)"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "filestream"
+            }
+        },
+        {
+            "@timestamp": "2026-07-11T11:36:47.000Z",
+            "agent": {
+                "ephemeral_id": "01234567-89ab-cdef-4ec2-b38f-e99536291b74",
+                "id": "01234567-89ab-cdef-4f5d-a1b8-6ed60bda2132",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat",
+                "version": "9.0.3"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "event": {
+                "original": "<14>Jul 11 11:36:47 U7ProXG 8c306682ee14,U7-Pro-XG-8.6.11+18870: ubnt-fanctrl[736]: fanctrl.fanctrl_log(): Sensor wifi1 temp: 72\u00b0C"
+            },
+            "tags": [
+                "forwarded"
+            ],
+            "input": {
+                "type": "udp"
             }
         }
     ]

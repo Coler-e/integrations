@@ -19,7 +19,7 @@ streams:
         required: true
         show_user: true
         title: Drop generic
-        description: Drops generic events, e.g. any message that does not include CEF or iptables event content.
+        description: Drops generic events, e.g. any message that does not include CEF or iptables event content. Classification happens in the ingest pipeline, so the event is still sent to Elasticsearch before being dropped (this saves storage but not bandwidth).
         type: bool
         multi: false
         default: false
@@ -35,7 +35,7 @@ streams:
         required: true
         show_user: true
         title: Drop iptables
-        description: Drops events that include iptables format event content.
+        description: Drops events that include iptables format event content. Classification happens in the ingest pipeline, so the event is still sent to Elasticsearch before being dropped (this saves storage but not bandwidth).
         type: bool
         multi: false
         default: false
@@ -119,7 +119,7 @@ streams:
         required: true
         show_user: true
         title: Drop generic
-        description: Drops generic events, e.g. any message that does not include CEF or iptables event content.
+        description: Drops generic events, e.g. any message that does not include CEF or iptables event content. Classification happens in the ingest pipeline, so the event is still sent to Elasticsearch before being dropped (this saves storage but not bandwidth).
         type: bool
         multi: false
         default: false
@@ -135,7 +135,7 @@ streams:
         required: true
         show_user: true
         title: Drop iptables
-        description: Drops events that include iptables format event content.
+        description: Drops events that include iptables format event content. Classification happens in the ingest pipeline, so the event is still sent to Elasticsearch before being dropped (this saves storage but not bandwidth).
         type: bool
         multi: false
         default: false

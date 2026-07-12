@@ -182,6 +182,500 @@
             "input": {
                 "type": "http_endpoint"
             }
+        },
+        {
+            "@timestamp": "2025-07-03T04:00:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa401",
+                        "alert_key": "ADMIN_ACCESS",
+                        "id": "event.admin_accessed_unifi_network",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa401\", \"alert_key\": \"ADMIN_ACCESS\", \"id\": \"event.admin_accessed_unifi_network\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:01:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa402",
+                        "alert_key": "CLIENT_CONNECTED_WIRELESS_2",
+                        "id": "event.client_connected",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163",
+                            "client_device_id": "01:23:45:67:89:0a"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa402\", \"alert_key\": \"CLIENT_CONNECTED_WIRELESS_2\", \"id\": \"event.client_connected\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\", \"client_device_id\": \"01:23:45:67:89:0a\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:02:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa403",
+                        "alert_key": "CLIENT_DISCONNECTED_WIRED_2",
+                        "id": "event.client_disconnected",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163",
+                            "client_device_id": "01:23:45:67:89:0b"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa403\", \"alert_key\": \"CLIENT_DISCONNECTED_WIRED_2\", \"id\": \"event.client_disconnected\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\", \"client_device_id\": \"01:23:45:67:89:0b\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:03:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa404",
+                        "alert_key": "DEVICE_ISSUE",
+                        "id": "event.device_issue",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa404\", \"alert_key\": \"DEVICE_ISSUE\", \"id\": \"event.device_issue\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:04:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa405",
+                        "alert_key": "DEVICE_ADOPTION_STATE_CHANGED",
+                        "id": "event.device_adoption_state_changed",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa405\", \"alert_key\": \"DEVICE_ADOPTION_STATE_CHANGED\", \"id\": \"event.device_adoption_state_changed\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:05:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa406",
+                        "alert_key": "DEVICE_DISCOVERY",
+                        "id": "event.device_discovery",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa406\", \"alert_key\": \"DEVICE_DISCOVERY\", \"id\": \"event.device_discovery\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:06:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa407",
+                        "alert_key": "DEVICE_UPDATE_STATUS_CHANGE",
+                        "id": "event.device_update_status_change",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa407\", \"alert_key\": \"DEVICE_UPDATE_STATUS_CHANGE\", \"id\": \"event.device_update_status_change\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:07:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa408",
+                        "alert_key": "ADMIN_RECORDING_CLIPS_MANIPULATIONS",
+                        "id": "event.admin_recording_clips_manipulations",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa408\", \"alert_key\": \"ADMIN_RECORDING_CLIPS_MANIPULATIONS\", \"id\": \"event.admin_recording_clips_manipulations\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:08:00.000Z",
+            "json": {
+                "events": [
+                    {
+                        "alert_id": "6865fae1897bb377dc0fa409",
+                        "alert_key": "ADMIN_GEOLOCATION",
+                        "id": "event.admin_geolocation",
+                        "scope": {
+                            "site_id": "67762da9ac8a666067034163"
+                        }
+                    }
+                ]
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"events\": [{\"alert_id\": \"6865fae1897bb377dc0fa409\", \"alert_key\": \"ADMIN_GEOLOCATION\", \"id\": \"event.admin_geolocation\", \"scope\": {\"site_id\": \"67762da9ac8a666067034163\"}}]}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:09:00.000Z",
+            "json": {
+                "alarm": {
+                    "conditions": [
+                        {
+                            "condition": {
+                                "source": "person",
+                                "type": "is"
+                            }
+                        }
+                    ],
+                    "name": "Elastic - Objects - All",
+                    "sources": [
+                        {
+                            "device": "28704E17931C",
+                            "type": "include"
+                        }
+                    ],
+                    "triggers": [
+                        {
+                            "device": "28704E17931C",
+                            "eventId": "6865ec6d025ca803e42878cb",
+                            "key": "vehicle",
+                            "timestamp": 1751510125629
+                        }
+                    ]
+                },
+                "timestamp": 1751510126224
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"alarm\": {\"conditions\": [{\"condition\": {\"source\": \"person\", \"type\": \"is\"}}], \"name\": \"Elastic - Objects - All\", \"sources\": [{\"device\": \"28704E17931C\", \"type\": \"include\"}], \"triggers\": [{\"device\": \"28704E17931C\", \"eventId\": \"6865ec6d025ca803e42878cb\", \"key\": \"vehicle\", \"timestamp\": 1751510125629}]}, \"timestamp\": 1751510126224}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:10:00.000Z",
+            "json": {
+                "alarm": {
+                    "conditions": [
+                        {
+                            "condition": {
+                                "source": "person",
+                                "type": "is"
+                            }
+                        }
+                    ],
+                    "name": "Elastic - Objects - All",
+                    "sources": [
+                        {
+                            "device": "28704E17931C",
+                            "type": "include"
+                        }
+                    ],
+                    "triggers": [
+                        {
+                            "device": "28704E17931C",
+                            "eventId": "6865ec6d025ca803e42878cb",
+                            "key": "package",
+                            "timestamp": 1751510125629
+                        }
+                    ]
+                },
+                "timestamp": 1751510126224
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"alarm\": {\"conditions\": [{\"condition\": {\"source\": \"person\", \"type\": \"is\"}}], \"name\": \"Elastic - Objects - All\", \"sources\": [{\"device\": \"28704E17931C\", \"type\": \"include\"}], \"triggers\": [{\"device\": \"28704E17931C\", \"eventId\": \"6865ec6d025ca803e42878cb\", \"key\": \"package\", \"timestamp\": 1751510125629}]}, \"timestamp\": 1751510126224}"
+            }
+        },
+        {
+            "@timestamp": "2025-07-03T04:11:00.000Z",
+            "json": {
+                "alarm": {
+                    "conditions": [
+                        {
+                            "condition": {
+                                "source": "person",
+                                "type": "is"
+                            }
+                        }
+                    ],
+                    "name": "Elastic - Objects - All",
+                    "sources": [
+                        {
+                            "device": "28704E17931C",
+                            "type": "include"
+                        }
+                    ],
+                    "triggers": [
+                        {
+                            "device": "28704E17931C",
+                            "eventId": "6865ec6d025ca803e42878cb",
+                            "key": "animal",
+                            "timestamp": 1751510125629
+                        }
+                    ]
+                },
+                "timestamp": 1751510126224
+            },
+            "tags": [
+                "preserve_original_event",
+                "preserve_duplicate_custom_fields",
+                "forwarded",
+                "ubnt-unifi-webhook"
+            ],
+            "input": {
+                "type": "http_endpoint"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            },
+            "agent": {
+                "version": "9.0.3",
+                "ephemeral_id": "5de3e243-c6ff-4e1c-934c-1f1be16969e0",
+                "id": "59d583ab-1ad7-4b7e-a14d-2b26e3748101",
+                "name": "elastic-agent-01.internal.example.com",
+                "type": "filebeat"
+            },
+            "event": {
+                "original": "{\"alarm\": {\"conditions\": [{\"condition\": {\"source\": \"person\", \"type\": \"is\"}}], \"name\": \"Elastic - Objects - All\", \"sources\": [{\"device\": \"28704E17931C\", \"type\": \"include\"}], \"triggers\": [{\"device\": \"28704E17931C\", \"eventId\": \"6865ec6d025ca803e42878cb\", \"key\": \"animal\", \"timestamp\": 1751510125629}]}, \"timestamp\": 1751510126224}"
+            }
         }
     ]
 }
